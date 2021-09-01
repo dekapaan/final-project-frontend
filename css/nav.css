@@ -1,0 +1,21 @@
+.navContainer {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 0 10%;
+}
+
+.optionsContainer {
+  display: flex;
+}
+
+.navImg {
+  background-position: center;
+  background-size: cover;
+  width: 22px;
+  height: 22px;
+}
