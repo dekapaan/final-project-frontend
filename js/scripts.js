@@ -12,7 +12,7 @@ function Login() {
       let storage = window.localStorage;
       storage.user_id = user.user_id;
       storage.username = user.username;
-      storage.email = user.username;
+      storage.email = user.email;
       storage.password = user.password;
       storage.first_name = user.first_name;
       storage.last_name = user.last_name;

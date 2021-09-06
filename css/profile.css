@@ -65,10 +65,35 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  display: none;
+}
+
+.editProfileOuter.active {
+  display: flex;
 }
 
 .editProfileInner {
   width: 50%;
   height: 90vh;
   background: white;
+}
+
+.fa-times {
+  font-size: 80px;
+}
+
+.follow {
+  padding: 10px 10px;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 2px;
+  width: 330px;
+  margin-top: 20px;
+}
+
+.profileInnerContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

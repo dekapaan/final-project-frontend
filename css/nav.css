@@ -1,4 +1,4 @@
-.navContainer {
+.header {
   display: flex;
   position: fixed;
   flex-direction: row;
@@ -13,6 +13,7 @@
 
 .logo {
   z-index: 5;
+  cursor: pointer;
 }
 
 .custom-shape-divider-top-1630919971 {
@@ -45,4 +46,24 @@
   background-size: cover;
   width: 22px;
   height: 22px;
+}
+
+.navContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  background: #131313;
+}
+
+.navContainer .fas {
+  font-size: 20px;
+}
+
+a {
+  color: white;
 }
