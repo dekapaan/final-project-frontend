@@ -1,0 +1,74 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profileOuterContainer {
+  color: white;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img {
+  width: 150px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: white;
+  object-fit: cover;
+  background-position: top;
+  margin-bottom: 10px;
+}
+
+.editImg {
+  width: 70px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.userProfileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.followContainer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.followContainer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 15px;
+  width: 80px;
+}
+
+.editProfile {
+  border: 1px solid white;
+  border-radius: 2px;
+  background: transparent;
+  color: white;
+  padding: 5px 10px;
+}
+
+.editProfileOuter {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editProfileInner {
+  width: 50%;
+  height: 90vh;
+  background: white;
+}

@@ -82,22 +82,50 @@ let emojis = [
   "129488",
 ];
 
-function feed(user_id) {
-  fetch(`https://frozen-beyond-41947.herokuapp.com/posts/${user_id}`, {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+if (window.localStorage["profile_img"] == "null") {
+  window.localStorage.profile_img = "/63699.png";
+}
+
+function renderProfilePosts() {
+  fetch(
+    `https://frozen-beyond-41947.herokuapp.com/user-info/${window.localStorage["profile"]}/`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      posts = data.posts[0];
-      posts = posts.sort((firstEl, secondEl) => {
-        return firstEl.post_id < secondEl.post_id;
-      });
-      console.log(posts);
-      document.querySelector(".postContainer").innerHTML = "";
+      user = data.user.user[0];
+      posts = data.user.posts;
+      followers = data.user.followers;
+      following = data.user.following;
+
+      console.log(user, posts, followers, following);
+
+      document.querySelector(".profileOuterContainer").innerHTML = `
+      <img src="${window.localStorage.profile_img}" alt="image of ${window.localStorage.profile}" class="img"/>
+      <div class="profileInnerContainer">
+        <div class="userProfileContainer">
+            <span class="username">${window.localStorage.profile}</span>
+        </div>
+        <div class="followContainer">
+            <div class="posts"><span class="number">${posts.length}</span>posts</div>
+            <div class="followers"><span class="number">${followers.length}</span>Followers</div>
+            <div class="following"><span class="number">${following.length}</span>Following</div>
+        </div>
+      </div>
+      `;
+      if (window.localStorage["profile"] == window.localStorage["username"]) {
+        document.querySelector(".userProfileContainer").innerHTML +=
+          '<button class="editProfile">Edit Profile</button>';
+      }
+
+      // document.querySelector(".editProfile").addEventListener("click", () => {
+      //   console.log(1);
+      // });
       posts.forEach((post) => {
         document.querySelector(
           ".postContainer"
@@ -203,7 +231,7 @@ function feed(user_id) {
     });
 }
 
-feed(window.localStorage["user_id"]);
+renderProfilePosts();
 
 function like(post_id) {
   console.log("post_id", post_id);
@@ -284,3 +312,38 @@ function sendNewComment(element) {
       console.log(data);
     });
 }
+
+function popEdit() {
+  document.querySelector(".editProfileInner").innerHTML = `
+  <div class="imgContainer">
+    <img src="${window.localStorage["profile_img"]}" alt="" class="editImg"/>
+    <div class="usernameDpChange">
+      <p class="editUsername"></p>
+      <input type="file" id="imgEntry" />
+    </div>
+  </div>
+  <div class="firstNameContainer">
+    <p class="firstNameHeading">First Name</p>
+    <input type="text" id="firstNameEntry" />
+  </div>
+  <div class="lastNameContainer">
+    <p class="lastNameHeading">Last Name</p>
+    <input type="text" id="lastNameEntry" />
+  </div>
+  <div class="emailContainer">
+    <p class="emailHeading">Email</p>
+    <input type="text" id="emailEntry" />
+  </div>
+  <div class="usernameContainer">
+    <p class="usernameHeading">Username</p>
+    <input type="text" id="usernameEntry" />
+  </div>
+  <div class="passwordContainer">
+    <p class="passwordHeading">Password</p>
+    <input type="text" id="passwordEntry" />
+  </div>
+  <button class="saveChanges">Save Changes</button>
+  `;
+}
+
+popEdit();

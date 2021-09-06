@@ -12,6 +12,10 @@ function Login() {
       let storage = window.localStorage;
       storage.user_id = user.user_id;
       storage.username = user.username;
+      storage.email = user.username;
+      storage.password = user.password;
+      storage.first_name = user.first_name;
+      storage.last_name = user.last_name;
       storage.profile_img = user.profile_img;
       window.location = "./home.html";
     });

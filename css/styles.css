@@ -7,5 +7,152 @@
 
 body {
   min-height: 100vh;
-  background: #555;
+  background: url("/layered-waves-haikei.svg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position-y: top;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-top: 100px;
+}
+
+.card {
+  position: relative;
+  background: white;
+  color: black;
+  overflow: hidden;
+  width: 400px;
+  margin-bottom: 30px;
+  z-index: 0;
+  display: grid;
+  border-radius: 20px;
+}
+
+.like {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  text-shadow: 2px 2px 8px #000;
+  font-size: 40px;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.like.active {
+  color: red;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: top;
+}
+
+.usernameCaptionContainer,
+.commentsContainer {
+  display: flex;
+}
+
+.usernameCaptionContainer {
+  margin-top: 10px;
+}
+
+.commentsContainer {
+  flex-direction: column;
+}
+
+.username,
+.commentUsername {
+  font-weight: 600;
+  margin: 0 10px;
+}
+
+.commentUsername {
+  margin-top: 10px;
+}
+
+.modalContainer {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  z-index: 1;
+}
+
+.viewComments {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.entryComment {
+  align-self: flex-end;
+  justify-self: center;
+  padding: 10px 5px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+.entryCommentContainer {
+  margin-top: 15px;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 50px;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.emojiButton,
+.commentButton {
+  height: 100%;
+  aspect-ratio: 1 /1;
+  border-radius: 0;
+  border: none;
+  background: white;
+}
+
+.emojiButton {
+  font-size: 18px;
+}
+
+.commentButton {
+  font-size: 18px;
+}
+
+.emojiContainer {
+  position: absolute;
+  left: 2px;
+  bottom: 60px;
+  overflow-y: scroll;
+  width: 280px;
+  height: 200px;
+  background: white;
+  box-shadow: 0px 0px 5px black;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.emojiContainer.active {
+  pointer-events: initial;
+  opacity: 1;
+}
+
+.emoji {
+  font-size: 25px;
+  padding: 10px;
+  cursor: pointer;
 }
