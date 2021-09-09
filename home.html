@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/nav.css" />
+    <link rel="stylesheet" href="/css/home.css" />
     <script
       src="https://kit.fontawesome.com/c29743a859.js"
       crossorigin="anonymous"
@@ -13,45 +14,43 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="header">
-      <div class="custom-shape-divider-top-1630919971">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path d="M1200 0L0 0 598.97 114.72 1200 0z" class="shape-fill"></path>
-        </svg>
+    <div class="modalContainer">
+      <div class="modal">
+        <img src="/1200px-Plus_symbol.svg.png" alt="" class="postImg" />
+        <input type="file" name="file" class="imgInput" />
+        <div class="captionContainer">
+          <textarea
+            name="caption"
+            id="caption"
+            cols="30"
+            rows="10"
+            placeholder="Caption"
+          ></textarea>
+        </div>
+        <div class="postBtnContainer">
+          <button class="postBtn">Post</button>
+          <button class="cancelBtn">Cancel</button>
+        </div>
       </div>
-      <h2 class="logo profileRedirect">Phactory</h2>
-      <!-- <input type="text" placeholder="Search" id="search" />
-      <span class="optionsContainer">
-        <a href=""><i class="fas fa-home"></i></a>
-        <a href=""><i class="fab fa-telegram-plane"></i></a>
-        <i class="fas fa-heart"></i>
-        <div class="navImg"></div>
-      </span> -->
     </div>
-    <!-- <div class="modalContainer">
-      <div class="modal"></div>
-    </div> -->
+    <div class="header">
+      <h2 class="logo">Phactory</h2>
+      <input type="text" placeholder="Search" id="search" />
+      <div class="searchResult"></div>
+    </div>
     <div class="postContainer"></div>
     <div class="navContainer">
       <a href="./home.html">
         <i class="fas fa-home"></i>
       </a>
-      <a href="">
-        <i class="fas fa-plus"></i>
-      </a>
-      <a href="">
+      <i class="fas fa-plus"></i>
+      <a href="./explore.html">
         <i class="fas fa-globe-africa"></i>
       </a>
-      <a href="" class="profileRedirect">
-        <i class="fas fa-user"></i>
-      </a>
+      <i class="fas fa-user"></i>
     </div>
     <script src="/js/home.js"></script>
     <script src="/js/nav.js"></script>
+    <script src="/js/scripts.js"></script>
   </body>
 </html>

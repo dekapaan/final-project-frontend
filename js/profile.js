@@ -125,8 +125,9 @@ function renderProfilePosts() {
       </div>
       `;
       if (window.localStorage["profile"] == window.localStorage["username"]) {
-        document.querySelector(".userProfileContainer").innerHTML +=
-          '<button class="editProfile">Edit Profile</button>';
+        document.querySelector(
+          ".userProfileContainer"
+        ).innerHTML += `<button class="editProfile">Edit Profile</button>`;
       } else {
         let result = followers.map((follower) => follower.follower);
         if (result.includes(parseInt(window.localStorage.user_id))) {
@@ -201,6 +202,16 @@ function renderProfilePosts() {
                           </div>
                         </div>`;
 
+        if (window.localStorage["profile"] == window.localStorage["username"]) {
+          document.querySelectorAll(".card").forEach((card) => {
+            card.innerHTML += `<i class="fas fa-trash-alt"></i>`;
+          });
+          document.querySelectorAll(".fa-trash-alt").forEach((button) => {
+            button.addEventListener("click", (e) => {
+              deletePost(e.currentTarget.parentElement.id);
+            });
+          });
+        }
         document.querySelectorAll(".username").forEach((username) => {
           username.addEventListener("click", (e) => {
             console.log(e.currentTarget.innerHTML);
@@ -220,6 +231,7 @@ function renderProfilePosts() {
             container.innerHTML += `<span class="emoji">&#${emoji}</span>`;
           });
         });
+
         document.querySelectorAll(".emoji").forEach((press) => {
           press.addEventListener("click", (e) => {
             e.currentTarget.parentElement.parentElement.querySelector(
@@ -271,7 +283,8 @@ function renderProfilePosts() {
                 .querySelectorAll(".commentUsername")
                 .forEach((username) => {
                   username.addEventListener("click", (e) => {
-                    console.log(e.currentTarget.innerHTML);
+                    window.localStorage["profile"] = e.currentTarget.innerHTML;
+                    window.location = "./profile.html";
                   });
                 });
             });
@@ -343,6 +356,7 @@ function sendNewComment(element) {
     username.addEventListener("click", (e) => {
       console.log(e.currentTarget.innerHTML);
       window.localStorage["profile"] = e.currentTarget.innerHTML;
+      window.location = "./profile.html";
     });
   });
   fetch(`https://frozen-beyond-41947.herokuapp.com/comment/`, {
@@ -497,4 +511,17 @@ function unfollow() {
   )
     .then((res) => res.json())
     .then((data) => console.log(data));
+}
+
+function deletePost(post_id) {
+  fetch(`https://frozen-beyond-41947.herokuapp.com/delete_post/${post_id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 }

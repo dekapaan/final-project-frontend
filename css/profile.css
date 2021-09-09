@@ -97,3 +97,15 @@ body {
   align-items: center;
   flex-direction: column;
 }
+
+.fa-trash-alt {
+  position: absolute;
+  background: transparent;
+  border: none;
+  top: 60px;
+  right: 12px;
+  color: white;
+  font-size: 40px;
+  text-shadow: 1px 1px 10px black;
+  cursor: pointer;
+}

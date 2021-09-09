@@ -1,13 +1,12 @@
 .header {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: fixed;
-  flex-direction: row;
   height: 50px;
   width: 100vw;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  padding: 0 10%;
+  background: white;
+  padding: 0 5%;
   z-index: 5;
 }
 
@@ -16,39 +15,59 @@
   cursor: pointer;
 }
 
-.custom-shape-divider-top-1630919971 {
+#search {
+  border: none;
+  border-bottom: 1px solid #131313;
+  padding: 5px;
+  width: 200px;
+  outline: none;
+}
+
+.searchResult {
+  display: none;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  z-index: 4;
+  right: 5%;
+  top: 50px;
+  background: white;
+  width: 300px;
+  border-radius: 20px;
+  padding: 5px 0;
+  box-shadow: 1px 1px 10px black;
 }
 
-.custom-shape-divider-top-1630919971 svg {
-  position: relative;
+.searchResult.active {
   display: block;
-  width: calc(100% + 1.3px);
-  height: 60px;
 }
 
-.custom-shape-divider-top-1630919971 .shape-fill {
-  fill: #ffffff;
-}
-
-.optionsContainer {
+.resultItem {
+  cursor: pointer;
   display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-.navImg {
-  background-position: center;
-  background-size: cover;
-  width: 22px;
-  height: 22px;
+.resultItem:last-of-type {
+  border: none;
 }
 
-.navContainer {
+.resultImg {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.searchResult::after {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  content: "";
+  width: 4px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.search {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -56,14 +75,52 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 50px;
   background: #131313;
+}
+
+.navContainer {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background: black;
+
+  height: 50px;
+}
+
+.loading {
+  width: 30px;
+}
+
+.resultUsername {
+  cursor: pointer;
 }
 
 .navContainer .fas {
   font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.navContainer a,
+.navContainer i {
+  width: 100%;
+  height: 100%;
 }
 
 a {
   color: white;
+  text-decoration: none;
+}
+
+.navContainer i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s ease;
+}
+
+.navContainer i:hover {
+  background: white;
+  color: #131313;
 }

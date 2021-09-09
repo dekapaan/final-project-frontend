@@ -137,6 +137,7 @@ function feed(user_id) {
               .classList.toggle("active");
           });
         });
+
         document.querySelectorAll(".emojiContainer").forEach((container) => {
           emojis.forEach((emoji) => {
             container.innerHTML += `<span class="emoji">&#${emoji}</span>`;
