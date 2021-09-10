@@ -18,7 +18,8 @@ function Login() {
       storage.last_name = user.last_name;
       storage.profile_img = user.profile_img;
       window.location = "./home.html";
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 function getToken() {
@@ -36,9 +37,11 @@ function getToken() {
     .then((data) => {
       console.log(data);
       if (data.access_token) {
+        window.localStorage.jwt = data.access_token;
         Login();
       }
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 document.getElementById("loginForm").addEventListener("submit", (e) => {
@@ -70,10 +73,22 @@ function register() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 document.getElementById("registerForm").addEventListener("submit", (e) => {
   e.preventDefault();
   register();
 });
+
+registerToggle = document.querySelector(".registerBtn");
+signToggle = document.querySelector(".signBtn");
+
+signToggle.addEventListener("click", toggleRegSign);
+registerToggle.addEventListener("click", toggleRegSign);
+
+function toggleRegSign() {
+  document.getElementById("registerForm").classList.toggle("active");
+  document.getElementById("loginForm").classList.toggle("active");
+}

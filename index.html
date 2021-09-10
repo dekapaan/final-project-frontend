@@ -4,23 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phactory - Login</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>Phactory</title>
   </head>
   <body>
-    <form id="loginForm">
-      <h1>Log in</h1>
+    <form id="loginForm" class="active">
+      <h1>Phactory</h1>
       <input type="text" placeholder="Username" id="logUsername" />
       <input type="text" placeholder="Password" id="logPassword" />
       <button type="submit" class="button">Login</button>
+      <p>Don't have an account? <span class="registerBtn">Register</span></p>
     </form>
     <form id="registerForm">
-      <h1>Register</h1>
+      <h1>Phactory</h1>
       <input type="text" placeholder="Email" id="registerEmail" />
       <input type="text" placeholder="Full Name" id="registerFirstName" />
       <input type="text" placeholder="Last Name" id="registerLastName" />
       <input type="text" placeholder="Username" id="registerUsername" />
       <input type="text" placeholder="Password" id="registerPassword" />
       <button type="submit" class="button">Sign up</button>
+      <p>Already have an account? <span class="signBtn">Sign in</span></p>
     </form>
     <script src="/js/scripts.js"></script>
   </body>

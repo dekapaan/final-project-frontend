@@ -83,7 +83,12 @@ let emojis = [
 ];
 
 function renderPosts() {
-  fetch("https://frozen-beyond-41947.herokuapp.com/post/")
+  fetch("https://frozen-beyond-41947.herokuapp.com/post/", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -173,6 +178,7 @@ function renderPosts() {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
+                Authorization: `jwt ${window.localStorage.jwt}`,
               },
             }
           )
@@ -201,11 +207,13 @@ function renderPosts() {
                     });
                   });
               });
-            });
+            })
+            .catch(alert("something went wrong"));
         }
       });
       getLike();
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 renderPosts();
@@ -219,6 +227,7 @@ function getLike() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `jwt ${window.localStorage.jwt}`,
       },
     }
   )
@@ -235,7 +244,8 @@ function getLike() {
           }
         });
       });
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 function sendNewComment(element) {
@@ -256,6 +266,7 @@ function sendNewComment(element) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
     },
     body: JSON.stringify({
       post_id: element.parentElement.parentElement.id,
@@ -267,7 +278,8 @@ function sendNewComment(element) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 document.querySelector(".cancelBtn").addEventListener("click", () => {
@@ -308,6 +320,7 @@ document.querySelector(".postBtn").addEventListener("click", () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
     },
     body: JSON.stringify({
       user_id: window.localStorage.user_id,
@@ -319,5 +332,6 @@ document.querySelector(".postBtn").addEventListener("click", () => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-    });
+    })
+    .catch(alert("something went wrong"));
 });

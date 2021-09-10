@@ -80,6 +80,19 @@ body {
   margin-top: 10px;
 }
 
+.comment {
+  position: relative;
+  width: 100%;
+}
+
+.fa-trash {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  color: #aaa;
+  font-size: 12px;
+}
+
 .modalContainer {
   position: fixed;
   display: none;
@@ -136,6 +149,7 @@ body {
   border-radius: 0;
   border: none;
   background: white;
+  cursor: pointer;
 }
 
 .emojiButton {
@@ -212,14 +226,23 @@ body {
   color: #fff;
   padding: 10px 0;
   border: none;
+  transition: 0.3s ease;
 }
 
 .postBtn {
-  background: #333;
+  background: black;
+}
+
+.postBtn:hover {
+  background: #222;
 }
 
 .cancelBtn {
   background: red;
+}
+
+.cancelBtn:hover {
+  background: rgb(192, 0, 0);
 }
 
 .postBtnContainer {
@@ -227,4 +250,38 @@ body {
   bottom: 0;
   width: 100%;
   display: flex;
+}
+
+.viewCommentOuter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.viewCommentInner {
+  position: relative;
+  width: 320px;
+  height: 80vh;
+  background: white;
+  padding: 10px;
+}
+
+.viewCommentTitle {
+  font-size: 25px;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.fa-times {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  font-size: 20px;
 }

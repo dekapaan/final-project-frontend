@@ -47,6 +47,7 @@ document.querySelector(".postBtn").addEventListener("click", () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
     },
     body: JSON.stringify({
       user_id: window.localStorage.user_id,
@@ -58,7 +59,10 @@ document.querySelector(".postBtn").addEventListener("click", () => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-    });
+      alert(data.message);
+      window.location.reload();
+    })
+    .catch(alert("something went wrong"));
 });
 
 document.getElementById("search").addEventListener("keyup", (e) => {
@@ -103,5 +107,6 @@ function renderSearch(username) {
           });
         });
       });
-    });
+    })
+    .catch(alert("something went wrong"));
 }

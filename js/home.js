@@ -87,6 +87,7 @@ function feed(user_id) {
     method: "get",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
     },
   })
     .then((res) => res.json())
@@ -162,8 +163,13 @@ function feed(user_id) {
 
         document.querySelectorAll(".like").forEach((button) => {
           button.addEventListener("click", (e) => {
-            e.currentTarget.classList.add("active");
-            like(e.currentTarget.parentElement.id);
+            if (e.currentTarget.classList.contains("active")) {
+              unlike(e.currentTarget.parentElement.id);
+              e.currentTarget.classList.remove("active");
+            } else {
+              e.currentTarget.classList.add("active");
+              like(e.currentTarget.parentElement.id);
+            }
           });
         });
         fetch(
@@ -172,6 +178,7 @@ function feed(user_id) {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `jwt ${window.localStorage.jwt}`,
             },
           }
         )
@@ -190,6 +197,20 @@ function feed(user_id) {
                 </div>
                 `;
               }
+              document.querySelectorAll(".comment").forEach((container) => {
+                if (
+                  container.querySelector(".commentUsername").innerHTML ==
+                  window.localStorage.username
+                ) {
+                  container.innerHTML += `<i class="fas fa-trash" id="${comment.comment_id}"></i>`;
+                }
+                document.querySelectorAll(".fa-trash").forEach((button) => {
+                  button.addEventListener("click", () => {
+                    console.log("bop");
+                    deleteComment(button.id);
+                  });
+                });
+              });
               document
                 .querySelectorAll(".commentUsername")
                 .forEach((username) => {
@@ -198,22 +219,24 @@ function feed(user_id) {
                   });
                 });
             });
-          });
+          })
+          .catch(alert("something went wrong"));
       });
       getLike();
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 feed(window.localStorage["user_id"]);
 
 function like(post_id) {
-  console.log("post_id", post_id);
   console.log("user_id", window.localStorage["user_id"]);
   console.log(window.localStorage.user_id);
   fetch(`https://frozen-beyond-41947.herokuapp.com/like/${post_id}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
     },
     body: JSON.stringify({
       user_id: window.localStorage.user_id,
@@ -223,7 +246,8 @@ function like(post_id) {
     .then((data) => {
       console.log(data);
       console.log(document.getElementById(`${post_id}`));
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 function getLike() {
@@ -235,6 +259,7 @@ function getLike() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `jwt ${window.localStorage.jwt}`,
       },
     }
   )
@@ -251,7 +276,8 @@ function getLike() {
           }
         });
       });
-    });
+    })
+    .catch(alert("something went wrong"));
 }
 
 function sendNewComment(element) {
@@ -262,19 +288,38 @@ function sendNewComment(element) {
                     <span class="commentUsername">${window.localStorage["username"]}</span>
                     <span class="commentQuote">${comment}</span>
                   </div>`;
+  document.querySelectorAll(".comment").forEach((container) => {
+    document.querySelectorAll(".fa-trash").forEach((button) => {
+      button.addEventListener("click", () => {
+        console.log("bop");
+        deleteComment(button.id);
+      });
+    });
+  });
   document.querySelectorAll(".commentUsername").forEach((username) => {
     username.addEventListener("click", (e) => {
       console.log(e.currentTarget.innerHTML);
       window.localStorage["profile"] = e.currentTarget.innerHTML;
     });
   });
+  console.log(
+    element.parentElement.parentElement.id,
+    comment,
+    window.localStorage["user_id"],
+    window.localStorage["username"]
+  );
+  sendComment(element.parentElement.parentElement.id, comment);
+}
+
+function sendComment(post_id, comment) {
   fetch(`https://frozen-beyond-41947.herokuapp.com/comment/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
     },
     body: JSON.stringify({
-      post_id: element.parentElement.parentElement.id,
+      post_id: post_id,
       comment: comment,
       user_id: window.localStorage["user_id"],
       username: window.localStorage["username"],
@@ -283,5 +328,39 @@ function sendNewComment(element) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-    });
+    })
+    .catch(alert("something went wrong"));
+}
+
+function unlike(post_id) {
+  fetch(`https://frozen-beyond-41947.herokuapp.com/like/${post_id}/`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
+    },
+    body: JSON.stringify({
+      user_id: window.localStorage.user_id,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(alert("something went wrong"));
+}
+
+function deleteComment(comment_id) {
+  fetch(`https://frozen-beyond-41947.herokuapp.com/comment/${comment_id}/`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(alert("something went wrong"));
 }
