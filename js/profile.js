@@ -551,7 +551,12 @@ function editProfile() {
     .then((data) => {
       console.log(data);
       alert(data.message);
+      window.localStorage.profile =
+        document.getElementById("usernameEntry").value;
+      window.localStorage.username =
+        document.getElementById("usernameEntry").value;
       window.localStorage.profile_img = document.querySelector(".editImg").src;
+      window.location.reload();
     })
     .catch(function () {
       alert("something went wrong");
