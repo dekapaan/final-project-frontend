@@ -197,20 +197,7 @@ function feed(user_id) {
                 </div>
                 `;
               }
-              document.querySelectorAll(".comment").forEach((container) => {
-                if (
-                  container.querySelector(".commentUsername").innerHTML ==
-                  window.localStorage.username
-                ) {
-                  container.innerHTML += `<i class="fas fa-trash" id="${comment.comment_id}"></i>`;
-                }
-                document.querySelectorAll(".fa-trash").forEach((button) => {
-                  button.addEventListener("click", () => {
-                    console.log("bop");
-                    deleteComment(button.id);
-                  });
-                });
-              });
+
               document
                 .querySelectorAll(".commentUsername")
                 .forEach((username) => {
@@ -220,11 +207,15 @@ function feed(user_id) {
                 });
             });
           })
-          .catch(alert("something went wrong"));
+          .catch(function () {
+            alert("something went wrong");
+          });
       });
       getLike();
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 feed(window.localStorage["user_id"]);
@@ -247,7 +238,9 @@ function like(post_id) {
       console.log(data);
       console.log(document.getElementById(`${post_id}`));
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function getLike() {
@@ -277,7 +270,9 @@ function getLike() {
         });
       });
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function sendNewComment(element) {
@@ -288,14 +283,7 @@ function sendNewComment(element) {
                     <span class="commentUsername">${window.localStorage["username"]}</span>
                     <span class="commentQuote">${comment}</span>
                   </div>`;
-  document.querySelectorAll(".comment").forEach((container) => {
-    document.querySelectorAll(".fa-trash").forEach((button) => {
-      button.addEventListener("click", () => {
-        console.log("bop");
-        deleteComment(button.id);
-      });
-    });
-  });
+
   document.querySelectorAll(".commentUsername").forEach((username) => {
     username.addEventListener("click", (e) => {
       console.log(e.currentTarget.innerHTML);
@@ -329,7 +317,9 @@ function sendComment(post_id, comment) {
     .then((data) => {
       console.log(data);
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function unlike(post_id) {
@@ -347,20 +337,7 @@ function unlike(post_id) {
     .then((data) => {
       console.log(data);
     })
-    .catch(alert("something went wrong"));
-}
-
-function deleteComment(comment_id) {
-  fetch(`https://frozen-beyond-41947.herokuapp.com/comment/${comment_id}/`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `jwt ${window.localStorage.jwt}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }

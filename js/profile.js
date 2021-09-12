@@ -311,11 +311,15 @@ function renderProfilePosts() {
                 });
             });
           })
-          .catch(alert("something went wrong"));
+          .catch(function () {
+            alert("something went wrong");
+          });
       });
       getLike();
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function toggleFollowModal() {
@@ -348,7 +352,9 @@ function like(post_id) {
       console.log(data);
       console.log(document.getElementById(`${post_id}`));
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function getLike() {
@@ -378,7 +384,9 @@ function getLike() {
         });
       });
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function sendNewComment(element) {
@@ -413,7 +421,9 @@ function sendNewComment(element) {
     .then((data) => {
       console.log(data);
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function popEdit() {
@@ -517,7 +527,9 @@ function editProfile() {
       console.log(data);
       window.localStorage.profile_img = document.querySelector(".editImg").src;
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function follow() {
@@ -536,7 +548,9 @@ function follow() {
   )
     .then((res) => res.json())
     .then((data) => console.log(data))
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function unfollow() {
@@ -555,7 +569,9 @@ function unfollow() {
   )
     .then((res) => res.json())
     .then((data) => console.log(data))
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function deletePost(post_id) {
@@ -569,7 +585,9 @@ function deletePost(post_id) {
     .then((data) => {
       console.log(data);
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function fetchFollowInfo(user_id) {
@@ -602,5 +620,7 @@ function fetchFollowInfo(user_id) {
         });
       });
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }

@@ -62,7 +62,9 @@ document.querySelector(".postBtn").addEventListener("click", () => {
       alert(data.message);
       window.location.reload();
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 });
 
 document.getElementById("search").addEventListener("keyup", (e) => {
@@ -108,5 +110,7 @@ function renderSearch(username) {
         });
       });
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }

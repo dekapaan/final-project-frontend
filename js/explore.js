@@ -208,12 +208,16 @@ function renderPosts() {
                   });
               });
             })
-            .catch(alert("something went wrong"));
+            .catch(function () {
+              alert("something went wrong");
+            });
         }
       });
       getLike();
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 renderPosts();
@@ -245,7 +249,9 @@ function getLike() {
         });
       });
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function sendNewComment(element) {
@@ -279,7 +285,9 @@ function sendNewComment(element) {
     .then((data) => {
       console.log(data);
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 document.querySelector(".cancelBtn").addEventListener("click", () => {
@@ -333,5 +341,7 @@ document.querySelector(".postBtn").addEventListener("click", () => {
     .then((data) => {
       console.log(data);
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 });

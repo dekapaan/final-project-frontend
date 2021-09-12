@@ -19,7 +19,9 @@ function Login() {
       storage.profile_img = user.profile_img;
       window.location = "./home.html";
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 function getToken() {
@@ -41,7 +43,9 @@ function getToken() {
         Login();
       }
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 document.getElementById("loginForm").addEventListener("submit", (e) => {
@@ -74,7 +78,9 @@ function register() {
     .then((data) => {
       console.log(data);
     })
-    .catch(alert("something went wrong"));
+    .catch(function () {
+      alert("something went wrong");
+    });
 }
 
 document.getElementById("registerForm").addEventListener("submit", (e) => {
