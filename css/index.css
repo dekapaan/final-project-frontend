@@ -31,6 +31,7 @@ body {
   display: flex;
 }
 
+/* Input & register/login button */
 input,
 button {
   margin-top: 10px;
@@ -38,6 +39,7 @@ button {
   padding: 5px;
 }
 
+/* register/login button */
 button {
   background: white;
   border: none;
@@ -52,11 +54,13 @@ button:hover {
   color: white;
 }
 
+/* login/register switch text */
 form p {
   margin-top: 5px;
   font-size: 10px;
 }
 
+/* Form switch buttons */
 .signBtn,
 .registerBtn {
   color: rgb(110, 144, 255);

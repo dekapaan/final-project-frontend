@@ -4,6 +4,7 @@ body {
   flex-direction: column;
 }
 
+/* profile info section */
 .profileOuterContainer {
   color: white;
   margin-top: 80px;
@@ -12,6 +13,7 @@ body {
   align-items: center;
 }
 
+/* profile image */
 .img {
   width: 150px;
   aspect-ratio: 1/1;
@@ -29,6 +31,7 @@ body {
   border-radius: 50%;
 }
 
+/* username/edit/logout */
 .userProfileContainer {
   display: flex;
   flex-direction: column;
@@ -80,6 +83,7 @@ body {
   color: black;
 }
 
+/* edit profile outer container */
 .editProfileOuter {
   position: fixed;
   width: 100vw;
@@ -96,6 +100,7 @@ body {
   display: flex;
 }
 
+/* edit profile modal */
 .editProfileInner {
   position: relative;
   width: 50%;
@@ -162,6 +167,7 @@ body {
   cursor: pointer;
 }
 
+/* user followers outer container */
 .followOuter {
   position: fixed;
   display: none;
@@ -177,6 +183,7 @@ body {
   display: flex;
 }
 
+/* user followers modal */
 .followInner {
   padding: 10px;
   color: black;
@@ -241,6 +248,7 @@ body {
   color: white;
 }
 
+/* responsiveness */
 @media screen and (max-width: 1002px) {
   .firstNameContainer,
   .lastNameContainer,

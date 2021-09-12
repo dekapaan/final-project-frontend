@@ -1,16 +1,21 @@
+// close add post modal
 document.querySelector(".cancelBtn").addEventListener("click", () => {
   document.querySelector(".modalContainer").classList.remove("active");
 });
+
+// click logo to go to homepage
 document
   .querySelector(".logo")
   .addEventListener("click", () => (window.location = "./home.html"));
 
+// click user icon to go to personal profile
 document.querySelector(".fa-user").addEventListener("click", () => {
   console.log(window.localStorage.username);
   window.localStorage.profile = window.localStorage.username;
   window.location = "./profile.html";
 });
 
+// open add post modal
 document.querySelector(".fa-plus").addEventListener("click", () => {
   document.querySelector(".modalContainer").classList.toggle("active");
 });
@@ -36,6 +41,7 @@ function previewFile() {
 
 document.querySelector(".imgInput").addEventListener("change", previewFile);
 
+// send post to backend
 document.querySelector(".postBtn").addEventListener("click", () => {
   console.log(
     window.localStorage.user_id,
@@ -62,11 +68,14 @@ document.querySelector(".postBtn").addEventListener("click", () => {
       alert(data.message);
       window.location.reload();
     })
+
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });
 });
 
+// search that updates on typing
 document.getElementById("search").addEventListener("keyup", (e) => {
   console.log(e.currentTarget.value);
   container = document.querySelector(".searchResult");
@@ -77,12 +86,14 @@ document.getElementById("search").addEventListener("keyup", (e) => {
   renderSearch(e.currentTarget.value);
 });
 
+// if click not on search modal, close results
 window.addEventListener("click", (e) => {
   if (e.currentTarget != document.querySelector(".searchResult")) {
     document.querySelector(".searchResult").style.display = "none";
   }
 });
 
+// fetch and render search results
 function renderSearch(username) {
   fetch(`https://frozen-beyond-41947.herokuapp.com/search/${username}/`)
     .then((res) => res.json())
@@ -101,6 +112,8 @@ function renderSearch(username) {
           <p class="resultUsername">${user.username}</p>
         </div>
         `;
+
+        // click result item to go to profile
         document.querySelectorAll(".resultItem").forEach((item) => {
           item.addEventListener("click", (e) => {
             window.localStorage.profile =
@@ -110,6 +123,8 @@ function renderSearch(username) {
         });
       });
     })
+
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });

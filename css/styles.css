@@ -23,6 +23,7 @@ body {
   width: 100%;
 }
 
+/* post item */
 .card {
   position: relative;
   background: white;
@@ -93,6 +94,7 @@ body {
   font-size: 12px;
 }
 
+/* Add post modal outer */
 .modalContainer {
   position: fixed;
   display: none;
@@ -110,6 +112,7 @@ body {
   pointer-events: initial;
 }
 
+/* add post modal */
 .modal {
   width: 600px;
   height: 80vh;

@@ -1,3 +1,4 @@
+// login function
 function Login() {
   fetch(
     `https://frozen-beyond-41947.herokuapp.com/user/${
@@ -9,6 +10,8 @@ function Login() {
       console.log(data);
       user = data.user;
       console.log(user);
+
+      // save user data to localStorage
       let storage = window.localStorage;
       storage.user_id = user.user_id;
       storage.username = user.username;
@@ -17,13 +20,18 @@ function Login() {
       storage.first_name = user.first_name;
       storage.last_name = user.last_name;
       storage.profile_img = user.profile_img;
+
+      alert("Login successful");
       window.location = "./home.html";
     })
+
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });
 }
 
+// get jwt token
 function getToken() {
   fetch(`https://frozen-beyond-41947.herokuapp.com/auth`, {
     method: "post",
@@ -39,20 +47,25 @@ function getToken() {
     .then((data) => {
       console.log(data);
       if (data.access_token) {
+        // if token successfully retrieved, save token and user login function
         window.localStorage.jwt = data.access_token;
         Login();
       }
     })
+
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });
 }
 
+// click login button to get token and login
 document.getElementById("loginForm").addEventListener("submit", (e) => {
   e.preventDefault();
   getToken();
 });
 
+// register function (send details to backend)
 function register() {
   console.log(
     document.getElementById("registerFirstName").value,
@@ -77,12 +90,16 @@ function register() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      alert("Register complete, proceed to login");
     })
+
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });
 }
 
+// click register button to user register function
 document.getElementById("registerForm").addEventListener("submit", (e) => {
   e.preventDefault();
   register();
@@ -91,9 +108,11 @@ document.getElementById("registerForm").addEventListener("submit", (e) => {
 registerToggle = document.querySelector(".registerBtn");
 signToggle = document.querySelector(".signBtn");
 
+// toggle register and sign in forms
 signToggle.addEventListener("click", toggleRegSign);
 registerToggle.addEventListener("click", toggleRegSign);
 
+// toggle forms function
 function toggleRegSign() {
   document.getElementById("registerForm").classList.toggle("active");
   document.getElementById("loginForm").classList.toggle("active");

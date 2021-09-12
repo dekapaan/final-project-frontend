@@ -1,3 +1,4 @@
+/* logo and search header */
 .header {
   display: flex;
   align-items: center;
@@ -23,6 +24,7 @@
   outline: none;
 }
 
+/* search result div */
 .searchResult {
   display: none;
   position: absolute;
@@ -39,6 +41,7 @@
   display: block;
 }
 
+/* search result items */
 .resultItem {
   cursor: pointer;
   display: flex;
@@ -78,6 +81,7 @@
   background: #131313;
 }
 
+/* nav styles */
 .navContainer {
   display: flex;
   width: 100%;
@@ -88,6 +92,7 @@
   height: 50px;
 }
 
+/* loading gif before search result renders */
 .loading {
   width: 30px;
 }

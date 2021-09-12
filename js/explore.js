@@ -1,3 +1,4 @@
+// emojis for container
 let emojis = [
   "128512",
   "128513",
@@ -82,6 +83,7 @@ let emojis = [
   "129488",
 ];
 
+// fetch and render posts
 function renderPosts() {
   fetch("https://frozen-beyond-41947.herokuapp.com/post/", {
     headers: {
@@ -124,6 +126,7 @@ function renderPosts() {
                             </div>
                           </div>`;
 
+          // click username on post and view user profile
           document.querySelectorAll(".username").forEach((username) => {
             username.addEventListener("click", (e) => {
               console.log(e.currentTarget.innerHTML);
@@ -131,6 +134,8 @@ function renderPosts() {
               window.location = "./profile.html";
             });
           });
+
+          // activate emoji container to add to comment
           document.querySelectorAll(".emojiButton").forEach((button) => {
             button.addEventListener("click", (e) => {
               e.currentTarget.parentElement
@@ -144,11 +149,14 @@ function renderPosts() {
             });
           });
 
+          // populate emoji container
           document.querySelectorAll(".emojiContainer").forEach((container) => {
             emojis.forEach((emoji) => {
               container.innerHTML += `<span class="emoji">&#${emoji}</span>`;
             });
           });
+
+          // add emoji to comment
           document.querySelectorAll(".emoji").forEach((press) => {
             press.addEventListener("click", (e) => {
               e.currentTarget.parentElement.parentElement.querySelector(
@@ -156,22 +164,27 @@ function renderPosts() {
               ).value += e.currentTarget.innerHTML;
             });
           });
+
+          // render comment and send to backend
           document.querySelectorAll(".commentButton").forEach((button) => {
             button.addEventListener("click", (e) => {
               sendNewComment(e.currentTarget);
             });
           });
-          document
-            .getElementById(`${post.post_id}`)
-            .querySelector(".commentsContainer").innerHTML += `
-                        <div class="viewComments">View all comments</div>`;
 
+          // like and unlike post
           document.querySelectorAll(".like").forEach((button) => {
             button.addEventListener("click", (e) => {
-              e.currentTarget.classList.add("active");
-              like(e.currentTarget.parentElement.id);
+              if (e.currentTarget.classList.contains("active")) {
+                unlike(e.currentTarget.parentElement.id);
+                e.currentTarget.classList.remove("active");
+              } else {
+                e.currentTarget.classList.add("active");
+                like(e.currentTarget.parentElement.id);
+              }
             });
           });
+          // fetch and render comments
           fetch(
             `https://frozen-beyond-41947.herokuapp.com/comment/${post.post_id}/`,
             {
@@ -197,17 +210,20 @@ function renderPosts() {
                   </div>
                   `;
                 }
+
+                // click comment username to view profile
                 document
                   .querySelectorAll(".commentUsername")
                   .forEach((username) => {
                     username.addEventListener("click", (e) => {
                       window.localStorage["profile"] =
                         e.currentTarget.innerHTML;
-                      window.location = "./profile.html";
+                      window.location = "/profile.html";
                     });
                   });
               });
             })
+            // error trapping
             .catch(function () {
               alert("something went wrong");
             });
@@ -215,13 +231,42 @@ function renderPosts() {
       });
       getLike();
     })
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });
 }
 
+// user render post function
 renderPosts();
 
+// like function
+function like(post_id) {
+  console.log("user_id", window.localStorage["user_id"]);
+  console.log(window.localStorage.user_id);
+  fetch(`https://frozen-beyond-41947.herokuapp.com/like/${post_id}/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
+    },
+    body: JSON.stringify({
+      user_id: window.localStorage.user_id,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      console.log(document.getElementById(`${post_id}`));
+    })
+
+    // error trapping
+    .catch(function () {
+      alert("something went wrong");
+    });
+}
+
+// get and render likes function
 function getLike() {
   fetch(
     `https://frozen-beyond-41947.herokuapp.com/user-like/${parseInt(
@@ -249,11 +294,13 @@ function getLike() {
         });
       });
     })
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });
 }
 
+// render and send comment to backend
 function sendNewComment(element) {
   comment = element.parentElement.querySelector(".entryComment").value;
   element.parentElement.parentElement.querySelector(
@@ -285,15 +332,18 @@ function sendNewComment(element) {
     .then((data) => {
       console.log(data);
     })
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });
 }
 
+// close modal event listener
 document.querySelector(".cancelBtn").addEventListener("click", () => {
   document.querySelector(".modalContainer").classList.toggle("active");
 });
 
+// Convert to data uri and send it to img src for the purpose to send to backend
 function previewFile() {
   const file = document.querySelector(".imgInput").files[0];
   const preview = document.querySelector(".postImg");
@@ -313,10 +363,12 @@ function previewFile() {
   }
 }
 
+// automates data uri transition and src change from changing img input
 document.querySelector(".imgInput").addEventListener("change", () => {
   previewFile();
 });
 
+// Send post to backend
 document.querySelector(".postBtn").addEventListener("click", () => {
   console.log(
     window.localStorage.user_id,
@@ -341,7 +393,32 @@ document.querySelector(".postBtn").addEventListener("click", () => {
     .then((data) => {
       console.log(data);
     })
+
+    // error trapping
     .catch(function () {
       alert("something went wrong");
     });
 });
+
+// unlike function
+function unlike(post_id) {
+  fetch(`https://frozen-beyond-41947.herokuapp.com/like/${post_id}/`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `jwt ${window.localStorage.jwt}`,
+    },
+    body: JSON.stringify({
+      user_id: window.localStorage.user_id,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+
+    // error trapping
+    .catch(function () {
+      alert("something went wrong");
+    });
+}
