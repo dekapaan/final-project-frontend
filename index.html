@@ -14,8 +14,8 @@
     <!-- login form -->
     <form id="loginForm" class="active">
       <h1>Phactory</h1>
-      <input type="text" placeholder="Username" id="logUsername" />
-      <input type="text" placeholder="Password" id="logPassword" />
+      <input type="text" placeholder="Username" id="logUsername" required />
+      <input type="text" placeholder="Password" id="logPassword" required />
       <button type="submit" class="button">Login</button>
       <p>Don't have an account? <span class="registerBtn">Register</span></p>
     </form>
@@ -23,11 +23,31 @@
     <!-- register form -->
     <form id="registerForm">
       <h1>Phactory</h1>
-      <input type="text" placeholder="Email" id="registerEmail" />
-      <input type="text" placeholder="Full Name" id="registerFirstName" />
-      <input type="text" placeholder="Last Name" id="registerLastName" />
-      <input type="text" placeholder="Username" id="registerUsername" />
-      <input type="text" placeholder="Password" id="registerPassword" />
+      <input type="text" placeholder="Email" id="registerEmail" required />
+      <input
+        type="text"
+        placeholder="Full Name"
+        id="registerFirstName"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Last Name"
+        id="registerLastName"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Username"
+        id="registerUsername"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Password"
+        id="registerPassword"
+        required
+      />
       <button type="submit" class="button">Sign up</button>
       <p>Already have an account? <span class="signBtn">Sign in</span></p>
     </form>

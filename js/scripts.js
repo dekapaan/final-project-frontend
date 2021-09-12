@@ -50,6 +50,8 @@ function getToken() {
         // if token successfully retrieved, save token and user login function
         window.localStorage.jwt = data.access_token;
         Login();
+      } else {
+        alert(data.description);
       }
     })
 
