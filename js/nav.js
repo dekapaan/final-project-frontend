@@ -78,11 +78,15 @@ document.querySelector(".postBtn").addEventListener("click", () => {
 // search that updates on typing
 document.getElementById("search").addEventListener("keyup", (e) => {
   console.log(e.currentTarget.value);
+
   container = document.querySelector(".searchResult");
   container.style.display = "flex";
   container.style.justifyContent = "center";
   container.innerHTML =
     '<img src="./loading-buffering.gif" alt="" class="loading" />';
+  if (!e.currentTarget.value) {
+    return;
+  }
   renderSearch(e.currentTarget.value);
 });
 
